@@ -90,7 +90,7 @@ const HomeWeather = () => {
 					element={<TomorrowForecast tomorrowForecast={tomorrowForecast} cityName={cityName} forecast={forecast} />}
 				/>
 			</Routes>
-			<MyFooter className="fixed-bottom"></MyFooter>
+			<MyFooter className={showCard ? "" : "fixed-bottom"}></MyFooter>
 		</BrowserRouter>
 	);
 };
