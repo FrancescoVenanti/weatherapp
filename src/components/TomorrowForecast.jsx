@@ -18,7 +18,11 @@ const TomorrowForecast = (props) => {
 					const min = date.getMinutes();
 					return (
 						<Col xs={6} md={3} key={element.dt}>
-							<Card className="align-items-center rounded-5 border-0 bg-light dark-shadow">
+							<Card
+								className={`${props.setBackground(
+									element.weather[0].main
+								)} align-items-center rounded-5 border-0 bg-light dark-shadow fw-bold`}
+							>
 								<Card.Img
 									style={{ width: "100px" }}
 									className="rounded-circle"
@@ -41,7 +45,14 @@ const TomorrowForecast = (props) => {
 				{showMore ? "Show Less" : "Show More"}
 			</button>
 
-			{showMore && <MoreWeather forecast={props.forecast} iconurl={iconurl} toCelsius={toCelsius} />}
+			{showMore && (
+				<MoreWeather
+					forecast={props.forecast}
+					iconurl={iconurl}
+					toCelsius={toCelsius}
+					setBackground={props.setBackground}
+				/>
+			)}
 		</Container>
 	);
 };

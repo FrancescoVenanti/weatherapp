@@ -32,7 +32,11 @@ const TodayWeather = (props) => {
 			<Row className="align-items-center justify-content-center">
 				<Col xs={8} className="">
 					<div className="">
-						<Card className="justify-content-around align-items-center  rounded-4 border-0 bg-light dark-shadow">
+						<Card
+							className={`${props.setBackground(
+								todayForecast[0].weather[0].main
+							)} justify-content-around align-items-center rounded-4 border-0 dark-shadow fw-bold`}
+						>
 							<Card.Img
 								style={{ width: "100px" }}
 								className=" rounded-circle"
@@ -40,7 +44,7 @@ const TodayWeather = (props) => {
 								src={iconurl + props.forecast.list[0].weather[0].icon + ".png"}
 							/>
 							<Card.Body>
-								<Card.Title className="fs-3">{props.forecast.city.name}</Card.Title>
+								<Card.Title className="display-6">{props.forecast.city.name}</Card.Title>
 								<Card.Text className="fs-2">
 									Right now: {hour}:{min < 10 ? "0" + min : min}
 								</Card.Text>
@@ -61,7 +65,11 @@ const TodayWeather = (props) => {
 					const min = date.getMinutes();
 					return (
 						<Col xs={6} md={3} key={element.dt}>
-							<Card className="align-items-center rounded-5 border-0 bg-light dark-shadow">
+							<Card
+								className={`${props.setBackground(
+									element.weather[0].main
+								)} align-items-center rounded-5 border-0 bg-light dark-shadow fw-bold`}
+							>
 								<Card.Img
 									style={{ width: "100px" }}
 									className="rounded-circle"
@@ -73,7 +81,7 @@ const TodayWeather = (props) => {
 										{hour}:{min < 10 ? "0" + min : min}
 									</Card.Text>
 									<Card.Text className="fs-3 text-primary">{Math.round(element.main.temp - toCelsius)} °C</Card.Text>
-									<Card.Text>{element.weather[0].description}</Card.Text>
+									<Card.Text className="fs-4">{element.weather[0].description}</Card.Text>
 								</Card.Body>
 							</Card>
 						</Col>

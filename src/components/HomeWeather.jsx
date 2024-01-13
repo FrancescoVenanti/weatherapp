@@ -57,6 +57,36 @@ const HomeWeather = () => {
 
 		fetchLocation();
 	};
+
+	const setBackground = (weather) => {
+		switch (weather) {
+			case "Clear":
+				return "clearSky";
+
+			case "Clouds":
+				return "scatteredClouds text-white";
+
+			case "Rain":
+				return "rain";
+
+			case "thunderstorm":
+				return "thunderstorm text-white";
+
+			case "Snow":
+				return "snow";
+
+			case "Atmosphere":
+				return "mist";
+
+			case "Drizzle":
+				return "rain";
+
+			default:
+				console.log("Unknown weather:", weather);
+				break;
+		}
+	};
+
 	return (
 		<BrowserRouter>
 			<MyNav />
@@ -80,6 +110,7 @@ const HomeWeather = () => {
 									forecast={forecast}
 									setTomorrowForecast={setTomorrowForecast}
 									tomorrowForecast={tomorrowForecast}
+									setBackground={setBackground}
 								/>
 							)}
 						</>
@@ -87,7 +118,14 @@ const HomeWeather = () => {
 				/>
 				<Route
 					path="/details/:city"
-					element={<TomorrowForecast tomorrowForecast={tomorrowForecast} cityName={cityName} forecast={forecast} />}
+					element={
+						<TomorrowForecast
+							tomorrowForecast={tomorrowForecast}
+							cityName={cityName}
+							forecast={forecast}
+							setBackground={setBackground}
+						/>
+					}
 				/>
 			</Routes>
 			<MyFooter className={showCard ? "" : "fixed-bottom"}></MyFooter>

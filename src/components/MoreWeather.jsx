@@ -5,6 +5,7 @@ const MoreWeather = (props) => {
 	return (
 		<Container>
 			<Row className="mt-2 g-2 justify-content-around">
+				<h3 className="text-white">5 day forecast</h3>
 				{props.forecast.list.map((element) => {
 					const date = new Date(element.dt_txt);
 					const hour = date.getHours();
@@ -13,7 +14,11 @@ const MoreWeather = (props) => {
 					const month = date.getMonth() + 1;
 					return (
 						<Col xs={6} md={3} key={element.dt}>
-							<Card className="align-items-center rounded-5 border-0 bg-light dark-shadow">
+							<Card
+								className={`${props.setBackground(
+									element.weather[0].main
+								)} align-items-center rounded-5 border-0 bg-light dark-shadow fw-bold`}
+							>
 								<Card.Img
 									style={{ width: "100px" }}
 									className="rounded-circle"
