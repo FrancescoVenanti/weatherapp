@@ -30,7 +30,7 @@ const TodayWeather = (props) => {
 	return (
 		<Container className="my-3">
 			<Row className="align-items-center justify-content-center">
-				<Col xs={8} className="">
+				<Col xs={12} className="">
 					<div className="">
 						<Card
 							className={`${props.setBackground(
@@ -57,14 +57,14 @@ const TodayWeather = (props) => {
 					</div>
 				</Col>
 			</Row>
-			<Row className="mt-2 g-2 align-items-center">
+			<Row className="mt-2 g-2 align-items-center row-col-5">
 				<h3 className="text-light text-start ms-3 mt-3">Later today</h3>
 				{todayForecast.map((element) => {
 					const date = new Date(element.dt_txt);
 					const hour = date.getHours();
 					const min = date.getMinutes();
 					return (
-						<Col xs={6} md={3} key={element.dt}>
+						<Col key={element.dt}>
 							<Card
 								className={`${props.setBackground(
 									element.weather[0].main
@@ -77,11 +77,11 @@ const TodayWeather = (props) => {
 									src={iconurl + element.weather[0].icon + ".png"}
 								/>
 								<Card.Body>
-									<Card.Text className="fs-4">
+									<Card.Text className="fs-5">
 										{hour}:{min < 10 ? "0" + min : min}
 									</Card.Text>
-									<Card.Text className="fs-3 text-primary">{Math.round(element.main.temp - toCelsius)} °C</Card.Text>
-									<Card.Text className="fs-4">{element.weather[0].description}</Card.Text>
+									<Card.Text className="fs-4 text-primary">{Math.round(element.main.temp - toCelsius)} °C</Card.Text>
+									<Card.Text className="fs-5">{element.weather[0].description}</Card.Text>
 								</Card.Body>
 							</Card>
 						</Col>
@@ -90,7 +90,7 @@ const TodayWeather = (props) => {
 				<Col className="">
 					<Link
 						to={`/details/${props.forecast.city.name}`}
-						className="btn btn-dark w-100 bg-light dark-shadow rounded-3 p-3 text-dark mt-3 w-50"
+						className="btn btn-dark w-100 bg-light dark-shadow rounded-3 p-3 text-dark mt-3"
 					>
 						Go to tomorrow's forecast
 						<ArrowRightCircle color="black" />
